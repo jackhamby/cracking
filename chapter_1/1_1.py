@@ -1,12 +1,26 @@
+
+# Determine if a string has all unique characters
+# Qs: Type of the string? 
+    # Is it ascii?
+    # Unicode?
+        # Utf-8
+        # Utf-16
+        # etc? 
+
+# Assumptions: Is extended ascii so limit of 256 chars
+# Big O
+    # Let N be the length of a_string
+    # O(N)
+
 import string
 
 def is_unique(a_string):
-    hash_array = [ [] for i in range(27) ]
+    hash_array = [ False for i in range(256) ]
     for letter in a_string:
         index = string.ascii_lowercase.index(letter)
-        if (len(hash_array[index]) > 0):
+        if (hash_array[index]):
             return False
-        hash_array[index].append(letter)
+        hash_array[index] = True
     return True
 
 unique_letters = "abcdefgh"
