@@ -16,11 +16,7 @@
 
 non_letters =  "!@#&()–[{}]:;',?/*"
 
-
-# For the string, calulate all permutations
-string1 = "tacocat"
-
-def getPermutations(string1):
+def get_permutations(string1):
     permutations = []
     if (len(string1) == 0):
         return permutations
@@ -31,10 +27,16 @@ def permute(permutation, letter, string1):
     permutation += letter
     permutations = []
     if (len(string1) == 0):
-        return permutation
+        return [permutation]
     for i, l in enumerate(string1):
         permutations.extend( permute(permutation, l,  string1[0:i] + string1[i + 1:]) )
     return permutations
+
+def reverse(word):
+    reversed_word = ""
+    for i in range(len(word) - 1, -1, -1):
+        reversed_word += word[i]
+    return reversed_word
 
 def factorial(n):
     product = 1
@@ -43,11 +45,24 @@ def factorial(n):
         n -= 1
     return product
 
+def is_palidrome(word):
+    if (word == reverse(word)):
+        return True
+    return False
 
 
+def palidrome_permutation(word):
+    for letter in word:
+        if (letter in non_letters):
+            print(f'replacing {letter} with space')
+            word = word.replace(letter, "")
+            print(word)
+    perms = get_permutations(word)
+    for perm in perms:
+        if (is_palidrome(perm)):
+            return True
+    return False
 
-perms = getPermutations("tacocat")
 
-print(f'string was {string1}')
-print(f'permutation count was {len(perms)}')
-print(f'should be {factorial(len(string1))}')
+result = palidrome_permutation("pareper")
+print(result)
