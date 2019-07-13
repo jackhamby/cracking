@@ -4,6 +4,7 @@ class LinkedList:
 
     def __init__(self):
         self.head = None
+        self.length = 0
 
 
     def __repr__(self):
@@ -19,6 +20,7 @@ class LinkedList:
         return string
 
     def insert(self, value):
+        self.length += 1
         if (not self.head):
             self.head = Node(value)
             return self.head
@@ -36,6 +38,7 @@ class LinkedList:
 
         if (self.head.value == value):
             self.head = self.head.next
+            self.length -= 1
             return self.head
 
         head = self.head 
@@ -43,8 +46,8 @@ class LinkedList:
         while(nxt):
             if (nxt.value == value):
                 head.next = nxt.next
+                self.length -= 1
                 return self.head
-                # Need to remove
             head = nxt
             nxt = nxt.next
 
@@ -62,14 +65,15 @@ class Node:
 
 
 
-lst = LinkedList()
-lst.insert(5)
-lst.insert(2)
-lst.insert(10)
-lst.remove(10)
-lst.remove(5)
-lst.remove(2)
-print(lst)
+# lst = LinkedList()
+# lst.insert(5)
+# lst.insert(2)
+# lst.insert(10)
+# lst.remove(10)
+# lst.remove(5)
+# lst.remove(2)
+
+# print(lst)
 
 
 
