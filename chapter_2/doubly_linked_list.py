@@ -45,12 +45,14 @@ class LinkedList:
         if (self.head.value == value):
             self.head = self.head.next
             self.head.prev = None
+            self.length -= 1
             return self.head
         head = self.head
         nxt = head.next
         while(nxt):
             if (nxt.value == value):
                 head.next = nxt.next
+                self.length -= 1
                 if (not head.next):
                     self.tail = head
                     return

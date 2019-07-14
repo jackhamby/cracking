@@ -31,6 +31,18 @@ class LinkedList:
                 return self.head
             head = head.next
 
+
+    def insert_node(self, node):
+        if (not self.head):
+            self.head = node
+            return self.head
+        head = self.head
+        while(head):
+            if (not head.next):
+                head.next = node
+                return self.head
+            head = head.next
+
         
     def remove(self, value):
         if (not self.head):
